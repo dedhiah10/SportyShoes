@@ -48,7 +48,7 @@ let abc = usrbuy.slice();
 //console.log(usrbuy);
 
 function loaddets() {
-	let html="";
+	let html="<h2>Your Account Details:</h2><br/>";
 	html+=("<table><tr><td>UserName</td><td>"+UserDetails['uname']+"</td></tr><tr><td>Number</td><td>"+UserDetails['Number']+"</td></tr><tr><td>Country</td><td>"+UserDetails['Country']+"</td></tr><td>Zip Code</td><td>"+UserDetails['ZipCode']+"</td></tr></table>");
 	console.log(html);
 	document.getElementById("usrDet").innerHTML = html;

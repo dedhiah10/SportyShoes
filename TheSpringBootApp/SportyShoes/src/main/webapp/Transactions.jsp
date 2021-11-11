@@ -25,6 +25,7 @@
 </div>
 
 <div class = "firstelem"></div>
+<div class="searchbar"><input class ="forminput" id="searchName" name="searchName" type="text"><button class= "formbutton" onclick="searchUser(document.getElementById('searchName').value)">Search</button></div>
 <div id="site"></div>
 <div class="barul footer">
 	<a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i>&nbsp;&nbsp;Facebook</a>
@@ -53,7 +54,7 @@
 	font-size: 38px;
 }
 
-.usrHead:hover+.usrInfo, .usrHead:focus+.usrInfo, .usrHead:active+.usrInfo 
+.usrHead:hover~.usrInfo, .usrHead:focus~.usrInfo, .usrHead:active~.usrInfo 
 {
 	display: block;
 }
@@ -63,24 +64,33 @@
 	display: block;
 }
 
+.usrInfo {display: none;}
 
 .page {
 	margin-bottom: 20px;
 }
+
+.searchbar {
+	width: 75%%;
+	margin: 0 12.5%;
+	padding: 20px 0;
+	text-align: center;
+	background-color: var(--color-accent-light-gray);
+}
 </style>
 <script>
-const users = ${users};
-console.log(users);
+const users1 = ${users};
+let users= users1;
+//console.log(users1);
 
 function allUsersFunc() {
 	let html = "";
 	for(let usr in users) {
-		html+="<div class = \"page\"><a href=\"#\" class=\"usrHead\">"+users[usr]['Name']+"</a><div class=\"usrInfo\"><table><tr><td>Number</td><td>"+users[usr]['Number']+"</td></tr><tr><td>Country</td><td>"+users[usr]['Country']+"</td></tr><tr><td>Zip Code</td><td>"+users[usr]['Zip Code']+"</td></tr></table>";
+		html+="<div class = \"page\"><a href=\"#\" class=\"usrHead\">"+users[usr]['Name']+"</a><div class=\"usrInfo\"><table><tr><td>Number</td><td>"+users[usr]['Number']+"</td></tr><tr><td>Country</td><td>"+users[usr]['Country']+"</td></tr><tr><td>Zip Code</td><td>"+users[usr]['Zip Code']+"</td></tr></table><a href=\"#\" class = \"usrHead\" style = \"font-size: 24px;\">Buy History</a>";
 		if (users[usr]['Prods'] != null) {
 		let abc = users[usr]['Prods'];
 		for(let i = 0; i < abc.length; i++) {
-			html+= "<a href=\"#\" class = \"usrHead\" style = \"font-size: 24px;\">Buy History</a><div class=\"usrInfo\">";
-			html+= ("<div class= \"proddiv\"><img class= \"prodimg\" src = \"/Images/");
+			html+= ("<div class=\"usrInfo\"><div class= \"proddiv\"><img class= \"prodimg\" src = \"/Images/");
 			html+= (abc[i]['Company']+"-"+abc[i]['Type']+"-"+abc[i]['Name']+".jpg\"/>");
 			html+= ("<span class=\"pricetag\">"+abc[i]['Price']+"$</span><h2 class= \"prodhead\">"+abc[i]['Name']+"</h2><ul class= \"prodtags\"><p>");
 			html+= (abc[i]['Company']+"</p><p>"+abc[i]['Type']+"</p></ul><p class= \"info\">");
@@ -90,6 +100,19 @@ function allUsersFunc() {
 		html+="</div></div><br/><br/><hr/><hr/><br/><br/><br/>";
 	}
 	document.getElementById("site").innerHTML = html;
+}
+
+function searchUser(arg) {
+	if(arg != '') {
+		users = [];
+		for(let i= 0; i < users1.length; i++) {
+			if (users1[i]['Name'].includes(arg)) {
+				users.push(users1[i]);
+			}
+		}
+		allUsersFunc();
+		users= users1;
+	} else {return;}
 }
 
 window.onload = allUsersFunc();

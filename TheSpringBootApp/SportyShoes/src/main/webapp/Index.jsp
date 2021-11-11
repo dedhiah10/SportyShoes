@@ -61,6 +61,7 @@ function usrAdded() {
 			
 		case true:
 			document.getElementById("usrAdd").innerHTML = "User Already Exists!";
+			document.getElementById("usrAdd").style.color= "red";
 			document.getElementById("usrAdd").style.display= "block";
 			setTimeout(function(){ document.getElementById("usrAdd").style.display= "none"; }, 5000);
 			break;

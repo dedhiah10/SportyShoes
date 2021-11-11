@@ -45,7 +45,7 @@ const adminRole = ${adminRole};
 //console.log(admin);
 console.log(adminRole[0]);
 function allShoes() {
-	let html = "";
+	let html = "<h2>Your Cart:</h2><br/>";
 	let price = 0;
 	for (let i = 0; i < abc.length; i++) {
 		price+=abc[i]['Price'];

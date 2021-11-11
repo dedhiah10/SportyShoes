@@ -160,7 +160,7 @@ a {padding: 20px; display: block; text-decoration: none; color: black;}
 
 .pricetag {
 	position: absolute; 
-	left: 200px; 
+	left: 16.5%; 
 	width: 100px; 
 	font-size: 36px;
 	z-index: 0;

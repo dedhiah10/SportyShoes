@@ -152,13 +152,13 @@ public class ProductController {
 		boolean flag = false;
 		List<User> usrlist = repousr.findByName(req.getParameter("uname").toLowerCase());
 		for(User usr: usrlist) {
-			if(usr.getName().equals(req.getParameter("pword"))) {
+			if(usr.getPassword().equals(req.getParameter("pword"))) {
 				HttpSession session = req.getSession(true);
 				if(usrprod.get(usr.getuID()) == null) {
 					usrprod.put(usr.getuID(), "0");
 					usrbuy.put(usr.getuID(), new ArrayList<ProdTime>());
 				}
-				session.setAttribute("uname", req.getParameter("uname"));
+				session.setAttribute("uname", usr.getName());
 				session.setAttribute("uID", usr.getuID());
 				if(req.getParameter("admin") != null) {
 					session.setAttribute("adminRole", true);
